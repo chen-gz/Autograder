@@ -1,5 +1,6 @@
+
 # score for this test
-full_score = 100
+full_score = 20
 
 # 0 for no input; 1 for stdin input; 2 for file input;
 test_input_type = 2
@@ -20,3 +21,4 @@ compile_command_solution = f"g++ ./reference/key_step04.cpp -o {test_working_dir
 
 student_exec_name = f"submission"
 solution_exec_name = f"solution"
+

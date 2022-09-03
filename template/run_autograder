@@ -2,8 +2,10 @@
 cp -av /autograder/submission/ece0301_ICA*.cpp /autograder/source/submissions
 
 cd /autograder/source
+mkdir submissions
+mkdir test_dir
 
-python3 generate_tests.py
+
 python3 run_tests.py > /autograder/results/results.json
 
 

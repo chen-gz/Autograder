@@ -5,8 +5,6 @@ from gradescope_utils.autograder_utils.decorators import partial_credit
 from utils import get_output, compare_output, run_cmd
 import shutil
 import os
-# for debug
-# from global_vars import *
 
 
 student_exec_full = os.path.join(test_working_dir, student_exec_name)
