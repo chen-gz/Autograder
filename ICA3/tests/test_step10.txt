@@ -1,0 +1,37 @@
+
+# score for this test
+full_score = 20
+
+# 0 for no input; 1 for stdin input; 2 for file input;
+test_input_type = 1
+test_input_filename = ""
+test_cases_path = ''
+
+# test_inputs should be set if test_input_type=0
+test_inputs = [
+    b'1 2\n c\n 0.7 2.13\n p\n v\n 1\n',
+    b'3 4\n c\n 0.5 1.507\n p\n c\n 1\n',
+
+    # TEST CASES for ICA #3 step 10 and 12
+    # Ordinary cases with different quadrants, case-insensitive, and different 1-4 options
+    b'2 2\n C\n 2.828 0.785\n p\n v\n 1\n',
+    b'-2 2\n c\n 2.828 2.356\n P\n V\n 2\n',
+    b'2.828 -2.356\n P\n -2 -2\n c\n C\n 3\n',
+    b'2.828 -0.785\n p\n -2 -2\n C\n c\n 4\n',
+    
+    # error cases
+    b'2 2\n C\n 2.828 0.785\n p\n v\n 6\n',  # not select from 1-4 error
+]
+
+# 0 for stdout output, 1 for file output
+test_output_type = 0
+test_output_filename = ""
+
+test_working_dir = './test_dir/'
+
+compile_command_student = f"g++ ./submissions/ece0301_ICA03_step10.cpp -o {test_working_dir}/submission"
+compile_command_solution = f"g++ ./reference/step10.cpp -o {test_working_dir}/solution"
+
+student_exec_name = f"submission"
+solution_exec_name = f"solution"
+

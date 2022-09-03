@@ -1,0 +1,49 @@
+
+# score for this test
+full_score = 30
+
+# 0 for no input; 1 for stdin input; 2 for file input;
+test_input_type = 1
+test_input_filename = ""
+test_cases_path = ''
+
+# test_inputs should be set if test_input_type=0
+test_inputs = [
+    b'1 2\n c\n 0.7 2.13\n p\n',
+    # TEST CASES for ICA #3 step 6
+    # Ordinary cases, different quadrants, c&p position reverse, and case-insensitive
+    b'2 2\n C\n 2.828 0.785\n p\n',
+    b'-2 2\n c\n 2.828 2.356\n P\n',
+    b'2.828 -2.356\n P\n -2 -2\n c\n',
+    b'2.828 -0.785\n p\n -2 -2\n C\n',
+    
+    # Special cases
+    ## On the axis
+    b'2 0\n c\n 2 0\n p\n',
+    b'0 2\n c\n 2 1.571\n p\n',
+    
+    # error cases
+    ## data type error
+    b'a 2\n c\n 2.828 0.785\n p\n',         # not number error
+    b'2 2\n Cartesian\n 2.828 0.785\n p\n', # string-char error
+    b'2.0 2\n c\n 2.828 0.785\n p\n',       # type match error, but depends on the source code
+    ## data out of boundary error
+    b'2 2\n c\n 2.828 3.927\n p\n',         # theta out of -pi to pi error
+    b'2 2\n C\n -2.828 0.785\n p\n',        # negative R error
+    ## beyond the options error
+    b'2 2\n C\n 2.828 0.785\n c\n',        # two Cartesian choice error
+    b'2 2\n A\n 2.828 0.785\n p\n',         # not select from C and P
+]
+
+# 0 for stdout output, 1 for file output
+test_output_type = 0
+test_output_filename = ""
+
+test_working_dir = './test_dir/'
+
+compile_command_student = f"g++ ./submissions/ece0301_ICA03_step06.cpp -o {test_working_dir}/submission"
+compile_command_solution = f"g++ ./reference/step06.cpp -o {test_working_dir}/solution"
+
+student_exec_name = f"submission"
+solution_exec_name = f"solution"
+

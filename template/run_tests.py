@@ -1,8 +1,7 @@
 import unittest
 from gradescope_utils.autograder_utils.json_test_runner import JSONTestRunner
-
+import os
 if __name__ == '__main__':
-
 	framework = './frame.py'
     tests_dir = './tests'
 
@@ -19,6 +18,5 @@ if __name__ == '__main__':
             with open(os.path.join(tests_dir, os.path.splitext(file)[0]) + '.py', 'w') as f2:
                 f2.write(out_source)
 
-
-	suite = unittest.defaultTestLoader.discover('tests')
-	JSONTestRunner(visibility='visible').run(suite)
+    suite = unittest.defaultTestLoader.discover('tests')
+    JSONTestRunner(visibility='visible').run(suite)
