@@ -2,7 +2,7 @@ import unittest
 from gradescope_utils.autograder_utils.json_test_runner import JSONTestRunner
 import os
 if __name__ == '__main__':
-	framework = './frame.py'
+    framework = './frame.py'
     tests_dir = './tests'
 
     test_sources = ""

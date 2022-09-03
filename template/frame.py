@@ -49,7 +49,7 @@ def test_input_by_string():
         ret, msg = compare_output(submission_stdout, jury_stdout)
         # ret, msg = test_cases(student_exec_name, solution_exec_name, inp)
         if not ret:
-            print(f"Test {test_case_cnt}/{len(test_inputs)} failed.\nTest Input: {str(inp)}")
+            print(f'Test {test_case_cnt}/{len(test_inputs)} failed.\nTest Input: \n{inp.decode()}\n')
             print(msg)
             score -= full_score / len(test_inputs)
     return score
