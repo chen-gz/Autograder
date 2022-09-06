@@ -29,7 +29,7 @@ def run_cmd(command: str):
     args = shlex.split(command)
     proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     # print(proc.stdout.read())
-    return str(proc.stdout.read()) + '\n' + str(proc.stderr.read())
+    return str(proc.stdout.read().decode()) + '\n' + str(proc.stderr.read().decode())
 
 
 def compare_output(user_input: str, target: str):

@@ -17,7 +17,7 @@ solution_exec = f"./{solution_exec_name}"
 def compile_code():
     msg = run_cmd(compile_command_student)
     if not os.path.exists(student_exec_full):
-        print(msg.decode())
+        print(msg)
         return False
 
     run_cmd(compile_command_solution)
