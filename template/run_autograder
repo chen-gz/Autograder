@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-mkdir /autograder/source/submissions
+mkdir -p /autograder/source/submissions
 cp -av /autograder/submission/ece0301_ICA*.cpp /autograder/source/submissions
 
 cd /autograder/source
