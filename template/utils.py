@@ -52,10 +52,10 @@ def compare_output(user_input: str, target: str):
 
             msg += f'First mismatch line is {i}\n'
             msg += f'The jury output is:"{target_lines[i]}".\n'
-            msg += f'You    output   is:"{input_lines[i]}".\n'
+            msg += f'You    output   is:"{input_lines[i]}".\n\n'
             ret = False
             line_mismatch = True
             break
     if not line_mismatch and not ret:
-        msg += "You have more lines than solution."
+        msg += "You have more lines than solution.\n\n"
     return ret, msg
