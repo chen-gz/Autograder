@@ -5,10 +5,10 @@ from gradescope_utils.autograder_utils.decorators import partial_credit
 from utils import get_output, compare_output, run_cmd
 import shutil
 import os
-
-
-student_exec_full = os.path.join(test_working_dir, student_exec_name)
-solution_exe_full = os.path.join(test_working_dir, solution_exec_name)
+ 
+ 
+ student_exec_full = os.path.join(test_working_dir, student_exec_name)
+ solution_exe_full = os.path.join(test_working_dir, solution_exec_name)
 
 student_exec = f"./{student_exec_name}"
 solution_exec = f"./{solution_exec_name}"
@@ -104,6 +104,32 @@ def test_input_by_file():
 
 
 def test_late():
+    meta_path = '/autograder/submission_metadata.json'
+    # meta_path = './tmp.json'
+    import json
+    from datetime import datetime
+    with open(meta_path, 'r') as f:
+        data = json.load(f)
+        tmp = data["created_at"]
+        submission_date_str = tmp[:-3]+tmp[-2:]
+        tmp = data["assignment"]["due_date"]
+        due_date_str = tmp[:-3]+tmp[-2:]
+        tmp = data["assignment"]["late_due_date"]
+        late_due_date_str  = None
+        if tmp != None:
+            late_due_date_str = tmp[:-3]+tmp[-2:]
+        if late_due_date_str is not None:
+            return 0
+        
+        due_date = datetime.strptime(due_date_str,"%Y-%m-%dT%H:%M:%S.%f%z")
+        sub_date = datetime.strptime(submission_date_str,"%Y-%m-%dT%H:%M:%S.%f%z")
+        day_late = sub_date - due_date
+        print(type(day_late))
+        late_days = (day_late.seconds/60 + day_late.days*60*24)/(60*24)
+        penalty = late_days * penalty_perday * full_score
+        if penalty > 0:
+            print(f'{late_days} late. Penalty: {penalty}')
+            return -penalty
     return 0
 
 
