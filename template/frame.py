@@ -7,8 +7,8 @@ import shutil
 import os
  
  
- student_exec_full = os.path.join(test_working_dir, student_exec_name)
- solution_exe_full = os.path.join(test_working_dir, solution_exec_name)
+student_exec_full = os.path.join(test_working_dir, student_exec_name)
+solution_exe_full = os.path.join(test_working_dir, solution_exec_name)
 
 student_exec = f"./{student_exec_name}"
 solution_exec = f"./{solution_exec_name}"
