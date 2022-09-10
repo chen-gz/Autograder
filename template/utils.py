@@ -32,7 +32,8 @@ def run_cmd(command: str):
     return str(proc.stdout.read().decode()) + '\n' + str(proc.stderr.read().decode())
 
 
-def compare_output(user_input: str, target: str):
+
+def compare_output(user_input: str, target: str, tolerant: Union[float,None] = None):
     ret = True
     input_lines_tmp = user_input.splitlines()
     target_lines_tmp = target.splitlines()
@@ -48,6 +49,30 @@ def compare_output(user_input: str, target: str):
             input_words = input_lines[i].lower().split()
             target_words = target_lines[i].lower().split()
             if input_words == target_words:
+                continue
+            # chech words length
+            if len(input_words) != len(target_words):
+                msg += f'Line {i + 1}:\nJury have {len(target_words)} words.\nYou have {len(input_words)} words.\n'
+                line_mismatch = True
+                continue
+
+            # check numbers
+            ok = True
+            for i in range(len(input_words)):
+                input_word = input_words[i]
+                target_word = target_words[i]
+                if input_word == target_word:
+                    continue
+                if tolerant is not None:
+                    try:
+                        if abs(float(input_word) - float(target_word)) <= tolerant:
+                            continue
+                        else:
+                            ok = False
+                            break
+                    except ValueError:
+                        pass
+            if ok:
                 continue
 
             msg += f'First mismatch line is {i}\n'

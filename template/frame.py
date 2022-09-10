@@ -32,7 +32,7 @@ def test_input_no():
     msgs = ""
     submission_stdout = get_output(f"{student_exec}", f"{test_working_dir}").decode('utf-8')
     jury_stdout = get_output(f"{solution_exec}", f"{test_working_dir}").decode('utf-8')
-    ret, msg = compare_output(submission_stdout, jury_stdout)
+    ret, msg = compare_output(submission_stdout, jury_stdout, tolerant)
     if not ret:
         print(msg)
         return 0
@@ -46,7 +46,7 @@ def test_input_by_string():
         test_case_cnt += 1
         submission_stdout = get_output(f"{student_exec}", f"{test_working_dir}", inputs=inp).decode('utf-8')
         jury_stdout = get_output(f"{solution_exec}", f"{test_working_dir}", inputs=inp).decode('utf-8')
-        ret, msg = compare_output(submission_stdout, jury_stdout)
+        ret, msg = compare_output(submission_stdout, jury_stdout, tolerant)
         # ret, msg = test_cases(student_exec_name, solution_exec_name, inp)
         if not ret:
             print(f'Test {test_case_cnt}/{len(test_inputs)} failed.\nTest Input: \n{inp.decode()}\n')
@@ -86,8 +86,8 @@ def test_input_by_file():
         else:
             msgs += f'Jury no output file.\n'
 
-        ret, msg = compare_output(submission_out, jury_out)
-        ret2, msg2 = compare_output(submission_stdout, jury_stdout)
+        ret, msg = compare_output(submission_out, jury_out, tolerant)
+        ret2, msg2 = compare_output(submission_stdout, jury_stdout, tolerant)
         if ret is False or ret2 is False:
             print(f"Test {test_case_cnt}/{len(test_file_list)} failed. Input file name: {test_file}")
             print(msgs)
