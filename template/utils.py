@@ -9,6 +9,7 @@ import logging
 import re
 import sys
 import shlex
+from typing import Union
 
 
 def get_output(exe_file, cwd='', inputs=b''):
@@ -41,26 +42,23 @@ def compare_output(user_input: str, target: str, tolerant: Union[float,None] = N
     target_lines = [line for line in target_lines_tmp if line.strip() != ""]
     msg = ''
     if len(input_lines) != len(target_lines):
-        msg = f'Jury have {len(target_lines)} lines output.\nYou have {len(input_lines)} lines output.\n'
+        msg += f'Jury have {len(target_lines)} lines output.\nYou have {len(input_lines)} lines output.\n'
         ret = False
     line_mismatch = False
     for i in range(min(len(input_lines), len(target_lines))):
-        if input_lines[i] != target_lines[i]:
-            input_words = input_lines[i].lower().split()
-            target_words = target_lines[i].lower().split()
-            if input_words == target_words:
-                continue
-            # chech words length
-            if len(input_words) != len(target_words):
-                msg += f'Line {i + 1}:\nJury have {len(target_words)} words.\nYou have {len(input_words)} words.\n'
-                line_mismatch = True
-                continue
-
+        if input_lines[i] == target_lines[i]:
+            continue
+        input_words = input_lines[i].lower().split()
+        target_words = target_lines[i].lower().split()
+        if input_words == target_words:
+            continue
+        # chech words length
+        if len(input_words) == len(target_words):
             # check numbers
             ok = True
-            for i in range(len(input_words)):
-                input_word = input_words[i]
-                target_word = target_words[i]
+            for j in range(len(input_words)):
+                input_word = input_words[j]
+                target_word = target_words[j]
                 if input_word == target_word:
                     continue
                 if tolerant is not None:
@@ -75,12 +73,12 @@ def compare_output(user_input: str, target: str, tolerant: Union[float,None] = N
             if ok:
                 continue
 
-            msg += f'First mismatch line is {i}\n'
-            msg += f'The jury output is:"{target_lines[i]}".\n'
-            msg += f'You    output   is:"{input_lines[i]}".\n\n'
-            ret = False
-            line_mismatch = True
-            break
+        msg += f'First mismatch line is {i}\n'
+        msg += f'The jury output is:"{target_lines[i]}".\n'
+        msg += f'You    output   is:"{input_lines[i]}".\n\n'
+        ret = False
+        line_mismatch = True
+        break
     # if not line_mismatch and not ret:
         # msg += "You have more lines than solution.\n\n"
     return ret, msg
