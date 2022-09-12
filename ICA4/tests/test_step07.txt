@@ -2,6 +2,7 @@
 # score for this test
 full_score = 20
 penalty_perday = 0.05
+tolerant = 1e-5
 
 # 0 for no input; 1 for stdin input; 2 for file input;
 test_input_type = 2

@@ -15,11 +15,15 @@ solution_exec = f"./{solution_exec_name}"
 
 
 def compile_code():
+    if os.path.exists(student_exec_full):
+        os.remove(student_exec_full)
     msg = run_cmd(compile_command_student)
     if not os.path.exists(student_exec_full):
         print(msg)
         return False
 
+    if os.path.exists(solution_exe_full):
+        os.remove(solution_exe_full)
     run_cmd(compile_command_solution)
     if not os.path.exists(solution_exe_full):
         print("Autograder configuration is wrong. Contact Instructor and TAs.\n")
@@ -68,6 +72,7 @@ def test_input_by_file():
 
         shutil.copy(test_file, f'{test_working_dir}/{test_input_filename}')  # overwrite
         output_file_path = os.path.join(test_working_dir, test_output_filename)
+        os.remove(output_file_path)
 
         submission_stdout = get_output(f"{student_exec}", f"{test_working_dir}").decode('utf-8')
         submission_out = ""
@@ -78,6 +83,9 @@ def test_input_by_file():
             os.remove(output_file_path)
         else:
             msgs += f'Submission no output file.\n'
+
+        shutil.copy(test_file, f'{test_working_dir}/{test_input_filename}')  # overwrite
+        os.remove(output_file_path)
 
         jury_stdout = get_output(f"{solution_exec}", f"{test_working_dir}").decode('utf-8')
         if os.path.exists(output_file_path):
@@ -124,7 +132,6 @@ def test_late():
         due_date = datetime.strptime(due_date_str,"%Y-%m-%dT%H:%M:%S.%f%z")
         sub_date = datetime.strptime(submission_date_str,"%Y-%m-%dT%H:%M:%S.%f%z")
         day_late = sub_date - due_date
-        print(type(day_late))
         late_days = (day_late.seconds/60 + day_late.days*60*24)/(60*24)
         penalty = late_days * penalty_perday * full_score
         if penalty > 0:
