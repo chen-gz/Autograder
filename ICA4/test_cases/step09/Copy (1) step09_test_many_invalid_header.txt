@@ -1,0 +1,14 @@
+Dividerldasjglasdjgasd
+30
+150
+150
+2
+Wheatstone
+7.5
+0.020
+10
+10
+10
+10
+10
+3
