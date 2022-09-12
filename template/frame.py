@@ -72,7 +72,8 @@ def test_input_by_file():
 
         shutil.copy(test_file, f'{test_working_dir}/{test_input_filename}')  # overwrite
         output_file_path = os.path.join(test_working_dir, test_output_filename)
-        os.remove(output_file_path)
+        if os.path.exists(output_file_path):
+            os.remove(output_file_path)
 
         submission_stdout = get_output(f"{student_exec}", f"{test_working_dir}").decode('utf-8')
         submission_out = ""
@@ -85,7 +86,8 @@ def test_input_by_file():
             msgs += f'Submission no output file.\n'
 
         shutil.copy(test_file, f'{test_working_dir}/{test_input_filename}')  # overwrite
-        os.remove(output_file_path)
+        if os.path.exists(output_file_path):
+            os.remove(output_file_path)
 
         jury_stdout = get_output(f"{solution_exec}", f"{test_working_dir}").decode('utf-8')
         if os.path.exists(output_file_path):
