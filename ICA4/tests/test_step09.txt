@@ -1,7 +1,7 @@
 
 # score for this test
 full_score = 10
-penalty_perday = 0.1
+penalty_perday = 0.05
 tolerant = 1e-5
 
 # 0 for no input; 1 for stdin input; 2 for file input;

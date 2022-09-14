@@ -79,6 +79,7 @@ def compare_output(user_input: str, target: str, tolerant: Union[float,None] = N
         ret = False
         line_mismatch = True
         break
-    # if not line_mismatch and not ret:
-        # msg += "You have more lines than solution.\n\n"
+    if not line_mismatch and not ret:
+        if len(input_lines) < len(target_lines):
+            msg += f'Jury output at line {len(input_lines)} is "{target_lines[len(input_lines)]}"\n'
     return ret, msg
