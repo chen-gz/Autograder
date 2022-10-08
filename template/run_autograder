@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 mkdir -p /autograder/source/submissions
-cp -av /autograder/submission/ece0301_ICA*.cpp /autograder/source/submissions
+cp -av /autograder/submission/* /autograder/source/submissions/
 
 cd /autograder/source
 
 mkdir -p test_dir
 
-
-python3 run_tests.py > /autograder/results/results.json
-
-
+python3 run_tests.py >/autograder/results/results.json
