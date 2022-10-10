@@ -1,0 +1,27 @@
+# score for this test
+full_score = 30
+penalty_perday = 0.05
+tolerant = 1e-5
+
+# 0 for no input; 1 for stdin input; 2 for file input;
+test_input_type = 1
+test_input_filename = ""
+test_cases_path = ""
+
+# test_inputs should be set if test_input_type=0
+test_inputs = [
+    b"1\n20\n4\n",
+    b"2\n20\n4\n",
+]
+
+# 0 for stdout output, 1 for file output
+test_output_type = 0
+test_output_filename = ""
+
+test_working_dir = "./test_dir/"
+
+compile_command_student = f"g++ ./submissions/ece0301_ICA07_flashlight.cpp ./submissions/FlashLight.cpp -o {test_working_dir}/submission"
+compile_command_solution = f"g++ ./reference/ece0301_ICA07_flashlight.cpp ./reference/FlashLight.cpp -o {test_working_dir}/solution"
+
+student_exec_name = f"submission"
+solution_exec_name = f"solution"
