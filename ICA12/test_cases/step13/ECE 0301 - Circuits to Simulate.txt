@@ -1,0 +1,24 @@
+Voltage Divider
+12
+200
+100
+Voltage Divider
+-15
+3e3
+12e3
+Voltage Divider
+300
+30
+270
+Current Divider
+1
+1e3
+1e3
+Current Divider
+6e-3
+15e3
+75e3
+Current Divider
+-200e-3
+18e3
+12e3
