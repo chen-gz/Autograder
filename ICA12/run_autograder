@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+mkdir -p /autograder/source/submissions
+cp -av /autograder/submission/* /autograder/source/submissions/
+
+cd /autograder/source
+
+mkdir -p test_dir
+make -C ./reference/step06
+make -C ./reference/step09
+make -C ./reference/step13
+make -C ./submissions/step06
+make -C ./submissions/step09
+make -C ./submissions/step13
+
+python3 run_tests.py >/autograder/results/results.json

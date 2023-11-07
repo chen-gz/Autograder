@@ -4,9 +4,9 @@ penalty_perday = 0.05
 tolerant = 1e-5
 
 # 0 for no input; 1 for stdin input; 2 for file input;
-test_input_type = 0
-test_input_filename = ""
-test_cases_path = ""
+test_input_type = 2
+test_input_filename = "ECE 0301 - Circuits to Simulate.txt"
+test_cases_path = "test_cases/step13"
 
 # test_inputs should be set if test_input_type=0
 test_inputs = []
